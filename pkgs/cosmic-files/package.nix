@@ -5,29 +5,38 @@
   libcosmicAppHook,
   stdenv,
   glib,
+  libclang,
+  clang,
   just,
   nix-update-script,
 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-files";
-  version = "1.0.0-alpha.6-unstable-2025-04-08";
+  version = "1.0.0-alpha.7-unstable-2025-04-30";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-files";
-    rev = "7a657c646b05715ea1c36cd74025173652789389";
-    hash = "sha256-Jp8u43hJWsGXLd82jdD9BWlVA3fGBQ4kCoIbKQNHL0o=";
+    rev = "dd98622cfa77b8d8ee0e2a0f3e4288ec0541504c";
+    hash = "sha256-Rz+15+BWix4CWG4FF/yEaAO2XWoNwjBPl2HhNda8LJs=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-xelN1sBGOwt6QmPHekH7IeTw2GEoz1Gana4KCPTO0lI=";
+  cargoHash = "sha256-Xl4cf8CbsBarvQ1xAEb0pAhjR1qvxyKm57syAL2xSHQ=";
 
   nativeBuildInputs = [
     libcosmicAppHook
+    libclang.lib
+    clang
     just
   ];
   buildInputs = [ glib ];
+
+  # Needed so bindgen can find libclang.so
+  LIBCLANG_PATH="${libclang.lib}/lib";
+  BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${libclang.lib}/lib/clang/${lib.getVersion clang}/include";
+
 
   # TODO: uncomment and remove phases below if these packages can ever be built at the same time
   # NOTE: this causes issues with the desktop instance linking to a window tab when cosmic-files is opened, see <https://github.com/lilyinstarlight/nixos-cosmic/issues/591>
