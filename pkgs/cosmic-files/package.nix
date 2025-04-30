@@ -27,7 +27,7 @@ rustPlatform.buildRustPackage rec {
 
   # Needed so bindgen can find libclang.so
   LIBCLANG_PATH="${llvmPackages.libclang.lib}/lib";
-  BINDGEN_EXTRA_CLANG_ARGS = with pkgs; "-isystem ${llvmPackages.libclang.lib}/lib/clang/${lib.versions.major (lib.getVersion clang)}/include";
+  BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${llvmPackages.libclang.lib}/lib/clang/${lib.versions.major (lib.getVersion clang)}/include";
 
   nativeBuildInputs = [
     libcosmicAppHook
