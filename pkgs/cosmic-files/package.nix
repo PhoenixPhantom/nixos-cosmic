@@ -5,6 +5,7 @@
   libcosmicAppHook,
   stdenv,
   glib,
+  llvmPackages,
   just,
   nix-update-script,
 }:
@@ -22,6 +23,9 @@ rustPlatform.buildRustPackage rec {
 
   useFetchCargoVendor = true;
   cargoHash = "sha256-Xl4cf8CbsBarvQ1xAEb0pAhjR1qvxyKm57syAL2xSHQ=";
+
+  # Needed so bindgen can find libclang.so
+  LIBCLANG_PATH="${llvmPackages.libclang}/lib";
 
   nativeBuildInputs = [
     libcosmicAppHook
