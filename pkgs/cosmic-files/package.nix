@@ -6,6 +6,7 @@
   stdenv,
   glib,
   llvmPackages,
+  clang,
   just,
   nix-update-script,
 }:
@@ -25,10 +26,14 @@ rustPlatform.buildRustPackage rec {
   cargoHash = "sha256-Xl4cf8CbsBarvQ1xAEb0pAhjR1qvxyKm57syAL2xSHQ=";
 
   # Needed so bindgen can find libclang.so
-  LIBCLANG_PATH="${llvmPackages.libclang}/lib";
+  LIBCLANG_PATH="${llvmPackages.libclang.lib}/lib";
+  BINDGEN_EXTRA_CLANG_ARGS = with pkgs; "-isystem ${llvmPackages.libclang.lib}/lib/clang/${lib.versions.major (lib.getVersion clang)}/include";
 
   nativeBuildInputs = [
     libcosmicAppHook
+    llvmPackages.libclang
+    llvmPackages.libcxxClang
+    clang
     just
   ];
   buildInputs = [ glib ];
