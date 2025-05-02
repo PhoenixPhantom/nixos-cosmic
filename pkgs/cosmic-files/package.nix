@@ -13,17 +13,17 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-files";
-  version = "1.0.0-alpha.7-unstable-2025-04-29";
+  version = "1.0.0-alpha.7-unstable-2025-05-01";
 
   src = fetchFromGitHub {
-    owner = "pop-os";
+    owner = "PhoenixPhantom";
     repo = "cosmic-files";
-    rev = "63176a1e2a942c7d2f22999f93fc963e2f8039c3";
-    hash = "sha256-bI5yTpqU2N6hFwI9wi4b9N5onY5iN+8YDM3bSgdYxjQ=";
+    rev = "e63740759964e40e1ce0aca7e2b479e14af82e22";
+    hash = "sha256-z8qbS4c/KRD9CLoyhfiCCQuVDkNE0DK+fjxZZlfrrRU=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-7AOdSk9XIXFCDyCus3XgOK3ZBVa4CvX+NFM0jHf7Wbs=";
+  cargoHash = "sha256-rYMl9CGbczGDHuEsGauPPOiqr9i/4I4mstjXH1ObV8M=";
 
   nativeBuildInputs = [
     libcosmicAppHook
@@ -31,7 +31,9 @@ rustPlatform.buildRustPackage rec {
     clang
     just
   ];
-  buildInputs = [ glib ];
+  buildInputs = [ 
+    glib
+  ];
 
   # Needed so bindgen can find libclang.so
   LIBCLANG_PATH="${libclang.lib}/lib";
