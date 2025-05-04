@@ -11,17 +11,17 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-notifications";
-  version = "1.0.0-alpha.7-unstable-2025-04-08";
+  version = "1.0.0-alpha.7-unstable-2025-05-02";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-notifications";
-    rev = "8eae7e0f62437a861cba4baa93b63a956c36756d";
-    hash = "sha256-xcGmcOoxHb7gj6fW7xPZ5R0MTkMVXNJgvr9d5LPy9kw=";
+    rev = "ba66c2b7e2a8245ef2d5ae37e6b9d8d81fe5b631";
+    hash = "sha256-ZJiyCJv0J5zt8A+Q6ymp/daCcbXSmHyGA1OTlSvLbjU=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-7EDe1OjGS6Xl0N/BrZG8lzWO0pFbwiEp+kn6WyydJQM=";
+  cargoHash = "sha256-/DL2htLHGEMA33cboOO3MDFLcdr9sbspfANyjFM6QaM=";
 
   nativeBuildInputs = [
     libcosmicAppHook
