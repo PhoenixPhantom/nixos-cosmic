@@ -13,13 +13,13 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-workspaces-epoch";
-  version = "1.0.0-alpha.7-unstable-2025-05-15";
+  version = "1.0.0-alpha.7-unstable-2025-05-19";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-workspaces-epoch";
-    rev = "5bb719f617fca8407a8563dfd427a83ee8212a39";
-    hash = "sha256-YCA+Urx6qI8hqaHrsfqX+ZvYzMl+PnepL8xsgCyhThg=";
+    rev = "8a9b9ea6149e17d01c4f5d5916c235b74cc3e204";
+    hash = "sha256-4Z3y16THdR8AELNeKhhpNJq4Yhv72TyrD+IvSvpHJvc=";
   };
 
   useFetchCargoVendor = true;
