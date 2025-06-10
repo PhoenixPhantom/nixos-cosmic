@@ -4,6 +4,7 @@
   rustPlatform,
   geoclue2-with-demo-agent,
   libinput,
+  libxkbcommon,
   pkg-config,
   pulseaudio,
   udev,
@@ -29,6 +30,7 @@ rustPlatform.buildRustPackage {
     libinput
     pulseaudio
     udev
+    libxkbcommon
   ];
 
   env.GEOCLUE_AGENT = "${lib.getLib geoclue2-with-demo-agent}/libexec/geoclue-2.0/demos/agent";
