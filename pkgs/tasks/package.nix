@@ -13,13 +13,13 @@
 
 rustPlatform.buildRustPackage {
   pname = "tasks";
-  version = "0.2.0-unstable-2025-06-08";
+  version = "0.2.0-unstable-2025-06-18";
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "tasks";
-    rev = "073e8e0ef15f4d0612a9dca5ff1028a1c3f2ec74";
-    hash = "sha256-t6F/tRf2LIc9n9XI3Iu+FrQqTLZZgptFXopcTFH4QI8=";
+    rev = "fa665f5663fb43f3052466c45477b52151c4f357";
+    hash = "sha256-t595qgj2X184pJamQM8Zlr7qxxfPyLrmVFlUSMhG+e8=";
   };
 
   useFetchCargoVendor = true;
