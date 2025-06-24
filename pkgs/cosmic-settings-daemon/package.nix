@@ -3,6 +3,7 @@
   fetchFromGitHub,
   rustPlatform,
   geoclue2-with-demo-agent,
+  openssl,
   libinput,
   libxkbcommon,
   pkg-config,
@@ -31,9 +32,12 @@ rustPlatform.buildRustPackage {
     pulseaudio
     udev
     libxkbcommon
+    openssl.dev
   ];
 
-  env.GEOCLUE_AGENT = "${lib.getLib geoclue2-with-demo-agent}/libexec/geoclue-2.0/demos/agent";
+  env = {
+     GEOCLUE_AGENT = "${lib.getLib geoclue2-with-demo-agent}/libexec/geoclue-2.0/demos/agent";
+  };
 
   postInstall = ''
     mkdir -p $out/share/{polkit-1/rules.d,cosmic/com.system76.CosmicSettings.Shortcuts/v1}
