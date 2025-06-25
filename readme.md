@@ -1,8 +1,7 @@
 # NixOS COSMIC
-
-Nix package set and NixOS module for using COSMIC. It is mainly a repository for testing COSMIC as it is developed.
-
-Dedicated development matrix room: <https://matrix.to/#/#cosmic:nixos.org>
+This is a nix package set and NixOS module for using System76's COSMIC desktop environment.
+The repository aims to provide around weekly updates for the environment which differs from 
+the update cadence of NixOS unstable (update only on a new release).
 
 ## Usage
 
@@ -10,14 +9,21 @@ Dedicated development matrix room: <https://matrix.to/#/#cosmic:nixos.org>
 
 If you have an existing `configuration.nix`, you can use the `nixos-cosmic` flake with the following in an adjacent `flake.nix` (e.g. in `/etc/nixos`):
 
-**Note:** If switching from traditional evaluation to flakes, `nix-channel` will no longer have any effect on the nixpkgs your system is built with, and therefore `nixos-rebuild --upgrade` will also no longer have any effect. You will need to use `nix flake update` from your flake directory to update nixpkgs and nixos-cosmic.
+
+> <picture>
+>   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Mqxx/GitHub-Markdown/main/blockquotes/badge/light-theme/info.svg">
+>   <img alt="Info" src="https://raw.githubusercontent.com/Mqxx/GitHub-Markdown/main/blockquotes/badge/dark-theme/info.svg">
+> </picture><br>
+>
+> If switching from traditional evaluation to flakes, `nix-channel` will no longer have any effect on the nixpkgs your system is built with, and therefore `nixos-rebuild --upgrade` will also no longer have any effect. You will need to use `nix flake update` from your flake directory to update nixpkgs and nixos-cosmic.
+
 
 ```nix
+# flake.nix
 {
   inputs = {
     nixpkgs.follows = "nixos-cosmic/nixpkgs"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
-
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    nixos-cosmic.url = "github:PhoenixPhantom/nixos-cosmic";
   };
 
   outputs = { self, nixpkgs, nixos-cosmic }: {
@@ -25,13 +31,17 @@ If you have an existing `configuration.nix`, you can use the `nixos-cosmic` flak
       # NOTE: change "host" to your system's hostname
       host = nixpkgs.lib.nixosSystem {
         modules = [
+          nixos-cosmic.nixosModules.default
+          # other modules to import would go here
           {
-            nix.settings = {
-              substituters = [ "https://cosmic.cachix.org/" ];
-              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+            nixpkgs = {
+              # You can configure nixpkgs here
+              # config.allowUnfree = true;
+              overlays = [
+                nixos-cosmic.overlays.default
+              ];
             };
           }
-          nixos-cosmic.nixosModules.default
           ./configuration.nix
         ];
       };
@@ -40,18 +50,40 @@ If you have an existing `configuration.nix`, you can use the `nixos-cosmic` flak
 }
 ```
 
-**Note:** To ensure binary substituters are set up before attempting to pull any COSMIC packages, perform a `nixos-rebuild test` with this configuration before attempting to add any COSMIC packages or settings to your NixOS configuration.
+Then add the following services configuration to your `configuration.nix`:
+```nix
+# configuration.nix
+{config, pkgs, ...}:
+{
+  # ...
+  # your configuration
+  # ...
 
-After setting up binary substituters and NixOS module, enable COSMIC with `services.desktopManager.cosmic.enable = true` and `services.displayManager.cosmic-greeter.enable = true` in your NixOS configuration.
 
-To use COSMIC Store to manage Flatpaks, set `services.flatpak.enable = true` and then run `flatpak remote-add --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo` in your user terminal to add the Flathub repository.
+  services = {
+    displayManager.cosmic-greeter.enable = true;
+    desktopManager.cosmic.enable = true;
+    # flatpak.enable = true; # see the section on flatpaks
+  };
+
+  # ...
+  # your configuration
+  # ...
+}
+
+```
+
+### Using flatpaks
+If you want to use flatpaks on your system (e.g. through the COSMIC store) you should set `services.flatpak.enable = true;` in your `configuration.nix` as indicated above. You can then setup the remote by running `flatpak remote-add --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo` in your terminal.
+
+### Installing packaged extensions
+This repository also packages multiple third-party extensions to the COSMIC desktop (e.g. [cosmic-ext-applet-clipboard-manager](https://github.com/cosmic-utils/clipboard-manager) or [cosmic-ext-tweaks](https://github.com/cosmic-utils/tweaks)). The `nixos-cosmic.overlays.default` overlay as used in the example `flake.nix` enables installing these extensions as you would install any other package (i.e. by adding it to `users.users."yourusername".packages`, `environment.system.packages` or `home.packages` (only if using home manager)).
 
 
 ## Build Requirements
+Currently the repository provides no binary cache so all packages need to be built locally.
 
-Although there is a provided binary cache built against the current `nixos-unstable` and `nixos-24.11` branches, if you are not using a current `nixos-unstable` or `nixos-24.11` then you may need to build packages locally.
-
-Generally you will need roughly 16 GiB of RAM and 40 GiB of disk space, but it can be built with less RAM by reducing build parallelism, either via `--cores 1` or `-j 1` or both, on `nix build`, `nix-build`, and `nixos-rebuild` commands.
+Generally you will need roughly 16 GiB of RAM and 40 GiB of disk space, but it can be built with less RAM by reducing build parallelism, either via `--cores 1` or `--max-jobs 1` or both, on `nix build`, `nix-build`, and `nixos-rebuild` commands.
 
 
 ## Troubleshooting
