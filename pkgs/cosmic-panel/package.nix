@@ -11,13 +11,13 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-panel";
-  version = "1.0.0-alpha.7-unstable-2025-07-01";
+  version = "1.0.0-alpha.7-unstable-2025-07-03";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-panel";
-    rev = "8a6f5cccbf0febd19cbc7678a033c1d4bc0fbaff";
-    hash = "sha256-GPRw8EPiwYMEKFvLKpEith1y30xAICQrHQPv8076Xeg=";
+    rev = "844dbb4a4d680268cee3d166489edd8fe2afb960";
+    hash = "sha256-xUpuiHAijCSzqpyXXFHtBbXQXcfx5xpyS/fLDP5IDEQ=";
   };
 
   useFetchCargoVendor = true;
