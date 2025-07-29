@@ -22,7 +22,7 @@ rustPlatform.buildRustPackage rec {
     owner = "pop-os";
     repo = "cosmic-greeter";
     rev = "38e6b93d57a6e4c427ceb269e39b43b6fb70c98e";
-    hash = "sha256-Wq1vZkcTQ2ktaoudY8Fon6oWdjVWSK2xJRFyhUI0BYY=";
+    hash = "sha256-/AuHLmahQZTD4uNcDOLpLCy6PfTn1t56rPzjSGQHQE0=";
   };
 
   useFetchCargoVendor = true;
