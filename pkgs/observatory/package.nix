@@ -22,7 +22,6 @@ rustPlatform.buildRustPackage rec {
     fetchSubmodules = true;
   };
 
-  useFetchCargoVendor = true;
   cargoHash = "sha256-Td1Dc00doBSDIlDekVp03TmAMuhEGAtShcgoMnggqA8=";
 
   nativeBuildInputs = [
@@ -37,7 +36,6 @@ rustPlatform.buildRustPackage rec {
 
     inherit version src;
 
-    useFetchCargoVendor = true;
     cargoHash = "sha256-+ELF/COm0SSDJk8ydyS4x/4ImTqj7PNZI4W2+4v62Js=";
 
     sourceRoot = "${src.name}/monitord";
