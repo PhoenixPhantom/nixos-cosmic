@@ -21,8 +21,8 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-edit";
-    rev = "b476bb90705b05c529a54de95d5a82527b7cbc82";
-    hash = "sha256-hVyEGxCtFKK/lxw4OMFyQckJL74fS181Ge8LCiCdtno=";
+    rev = "ec2b4883e3c63bb5ba96a45f1e271f6a291144bf";
+    hash = "sha256-TATiuN2NgN7yh/l7iXedRtMQkd1UTfSyzg2hOpz9xvI=";
   };
 
   cargoHash = "sha256-Bm1lzj/+n1TulIMUUuGrk5Bq0wIxp4LgzYNLO5QpF4U=";
