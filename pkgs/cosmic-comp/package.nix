@@ -21,16 +21,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-comp";
-  version = "1.0.0-alpha.7-unstable-2025-07-28";
+  version = "1.0.0-alpha.7-unstable-2025-08-01";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-comp";
-    rev = "c688786d427c9f79587dbb6320a2d861e40e18de";
-    hash = "sha256-aFZzKzBLYlSoJM4fziJ+02scsHmPx2jGz4Ew6C418DM=";
+    rev = "bdef75dc8c9a4d51fe19ab4652fc06fc6f8ffe3b";
+    hash = "sha256-mNQUJNV+blHc24hreLV6U32xj/t0tEutvseTKclPStE=";
   };
 
-  cargoHash = "sha256-kavIN2+CGRGH5sD1MRH3BLMRMDB3tMvkJh+tuIfv85I=";
+  cargoHash = "sha256-QM3yZDtn9tLSwwHQqRIEeulYwEYjVTjzkZXDeWzKaFA=";
 
   separateDebugInfo = true;
 
