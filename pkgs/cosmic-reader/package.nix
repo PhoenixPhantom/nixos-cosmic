@@ -4,6 +4,17 @@
   rustPlatform,
   libcosmicAppHook,
   nix-update-script,
+  pkg-config,
+  libxkbcommon,
+  fontconfig,
+  libclang,
+  glib,
+  glibc,
+  clang-tools,
+  clang,
+  poppler,
+  mupdf,
+  stdenv,
 }:
 
 rustPlatform.buildRustPackage {
@@ -21,7 +32,42 @@ rustPlatform.buildRustPackage {
 
   nativeBuildInputs = [
     libcosmicAppHook
+    pkg-config
+    libclang.lib
+    clang
+    glibc
+   ];
+
+  buildInputs = [
+    fontconfig
+    glib
+    clang-tools
+    libxkbcommon
+    poppler
+    mupdf
   ];
+
+  LIBCLANG_PATH="${libclang.lib}/lib";
+  BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${libclang.lib}/lib/clang/${lib.getVersion clang}/include";
+
+
+  postInstall = ''
+    cp target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-reader $out
+    mkdir -p $out/share/applications
+    echo "
+[Desktop Entry]
+Name=COSMIC Reader
+Exec=cosmic-reader %u
+Terminal=false
+Type=Application
+StartupNotify=true
+Icon=com.system76.CosmicReader
+Categories=COSMIC;Office;
+Keywords=PDF;Reader;Viewer;
+MimeType=application/pdf;application/epub+zip;
+" >>  $out/share/applications/com.system76.CosmicReader.desktop
+  '';
+
 
   passthru.updateScript = nix-update-script {
     # TODO: uncomment when there are actual tagged releases

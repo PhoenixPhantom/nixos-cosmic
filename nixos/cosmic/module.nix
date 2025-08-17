@@ -74,6 +74,7 @@ in
         cosmic-panel
         cosmic-player
         cosmic-randr
+        cosmic-reader
         cosmic-screenshot
         cosmic-session
         cosmic-settings
