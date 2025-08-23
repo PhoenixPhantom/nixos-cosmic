@@ -30,6 +30,7 @@
         "x86_64-darwin"
         "aarch64-darwin"
       ];
+
       rustPlatformFor =
         pkgs:
         if nixpkgs.lib.versionAtLeast pkgs.rustc.version "1.85.0" then
@@ -61,6 +62,19 @@
             rustPlatform = rustPlatformFor pkgs;
           };
       };
+
+      devShells = forAllSystems (system: let
+         pkgs = import nixpkgs{ inherit system; };
+      in {
+         default = pkgs.mkShell {
+            name = "nixos-cosmic env";
+            buildInputs = with pkgs; [
+               nixd
+            ];
+         };
+      });
+
+
 
       packages = forAllSystems (system: self.lib.packagesFor nixpkgs.legacyPackages.${system});
 
