@@ -82,12 +82,12 @@ rustPlatform.buildRustPackage rec {
 
   # TODO: use tests again, once they do not cause compiler errors every second update
   checkPhase = ''
-    #baseCargoTestFlags="$cargoTestFlags"
+    baseCargoTestFlags="$cargoTestFlags"
     # operation tests require io_uring and fail in nix-sandbox
-    #cargoTestFlags="$baseCargoTestFlags --package cosmic-files -- --skip operation::tests"
-    #runHook cargoCheckHook
-    #cargoTestFlags="$baseCargoTestFlags --package cosmic-files-applet"
-    #runHook cargoCheckHook
+    cargoTestFlags="$baseCargoTestFlags --package cosmic-files -- --skip operation::tests"
+    runHook cargoCheckHook
+    cargoTestFlags="$baseCargoTestFlags --package cosmic-files-applet"
+    runHook cargoCheckHook
   '';
 
   passthru.updateScript = nix-update-script {
