@@ -8,7 +8,10 @@
   just,
   libinput,
   pkg-config,
+  pipewire,
   pulseaudio,
+  libclang,
+  clang,
   stdenv,
   udev,
   util-linux,
@@ -33,15 +36,21 @@ rustPlatform.buildRustPackage {
     libcosmicAppHook
     just
     pkg-config
+    libclang.lib
+    clang
     util-linux
   ];
   buildInputs = [
     dbus
     glib
     libinput
+    pipewire
     pulseaudio
     udev
   ];
+
+  LIBCLANG_PATH="${libclang.lib}/lib";
+  BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${libclang.lib}/lib/clang/${lib.getVersion clang}/include";
 
   dontUseJustBuild = true;
   dontUseJustCheck = true;
