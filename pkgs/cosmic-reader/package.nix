@@ -19,16 +19,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-reader";
-  version = "0-unstable-2025-08-14";
+  version = "0-unstable-2025-08-25";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-reader";
-    rev = "28ca9c41c763f79d5c0cd7d2e2d39c3877a5fcc7";
-    hash = "sha256-TrbbznrV30XQ2ioEWXzF3ymz7LBsuoJ+RW/McFRnG98=";
+    rev = "d59faa6935122932c69a215d304e6f4882ac0727";
+    hash = "sha256-J31z0bcrMw+vGDforOHFrBnQxYqmnZezqka1G1ktzfY=";
   };
 
-  cargoHash = "sha256-1+YmX3PpgUEodU6xRhEGW+G7dqHwzigIfvfTVvc2nPE=";
+  cargoHash = "sha256-whbFCj5r0+WfkKoOlzO/Y45UZgoNQ6HXdCbaaBcxtmI=";
 
   nativeBuildInputs = [
     libcosmicAppHook
