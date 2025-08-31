@@ -72,6 +72,49 @@ Then add the following services configuration to your `configuration.nix`:
 ### Using flatpaks
 If you want to use flatpaks on your system (e.g. through the COSMIC store) you should set `services.flatpak.enable = true;` in your `configuration.nix` as indicated above. You can then setup the remote by running `flatpak remote-add --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo` in your terminal.
 
+### Theming
+All parts of the COSMIC environment support theming (interface colors can e.g. be changed through cosmic settings). Apps made using the iced toolkit should also automatically follow these settings.
+
+Additionally, if `Apply this theme to GNOME apps` is toggled to on in `Desktop` -> `Appearence` -> `Icons and Toolkit theming` in the COSMIC settings app, GNOME applications using the adwaita toolkit will also follow the same colors as the rest of COSMIC.
+
+Instead of using the cosmic settings app, the last part can currently also be acchieved by creating the text file `~/.config/cosmic/com.system76.CosmicTk/v1/apply_theme_global` with the content `true`.
+> [!NOTE]
+> Only enabling this setting will not neccessarily cause all GNOME apps to be themed as desired. And it does not reliably make GNOME applications use the icon theme selected in COSMIC.
+
+If some GNOME applications still not respect theming, you can use one of the following variants to get it working for most apps. However, I didn't yet find a way to applications get gtk4 applications that do not use libadwaita to accept the theming. Luckily, there aren't too many such apps.
+
+#### Using Home-Manager
+```nix
+# inside your home-manager config (i.e. home.nix)
+  gtk = {
+     enable = true;
+     iconTheme.name = "Cosmic"; # ensure GNOME apps adhere to the to the COSMIC iconset (selectable under `Icons and Toolkit theming`)
+
+     gtk3.theme = {
+           name="adw-gtk3"; # enable cosmic's theming on GTK3 apps
+           package = pkgs.adw-gtk3;
+     };
+  };
+```
+
+#### Without Home-Manager
+Install `pkgs.adw-gtk3` i.e. by adding it to `environment-systemPackages` or better, adding it to `users.users."${your_username}".packages`.
+Then, manually create or edit the file at `~/.config/gtk-3.0/settings.ini` to include:
+
+```ini
+[Settings]
+gtk-icon-theme-name=Cosmic
+gtk-theme-name=adw-gtk3
+```
+Additionally, edit the file at `~/.config/gtk-4.0/settings.ini` to include:
+```ini
+[Settings]
+gtk-icon-theme-name=Cosmic
+```
+
+
+
+
 ### Installing packaged extensions
 This repository also packages multiple third-party extensions to the COSMIC desktop (e.g. [cosmic-ext-applet-clipboard-manager](https://github.com/cosmic-utils/clipboard-manager) or [cosmic-ext-tweaks](https://github.com/cosmic-utils/tweaks)). The `nixos-cosmic.overlays.default` overlay as used in the example `flake.nix` enables installing these extensions as you would install any other package (i.e. by adding it to `users.users."yourusername".packages`, `environment.system.packages` or `home.packages` (only if using home manager)).
 
