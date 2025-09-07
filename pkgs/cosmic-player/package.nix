@@ -10,6 +10,7 @@
   just,
   pkg-config,
   stdenv,
+  pipewire,
   nix-update-script,
 }:
 
@@ -35,6 +36,7 @@ rustPlatform.buildRustPackage {
 
   buildInputs = [
     alsa-lib
+    pipewire
     ffmpeg
     glib
     gst_all_1.gstreamer
