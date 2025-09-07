@@ -170,10 +170,10 @@ in
     programs.dconf.packages = with pkgs; [ cosmic-session ];
 
     # TODO: remove when upstream has XDG autostart support
-    systemd.user.targets.cosmic-session = {
-      wants = [ "xdg-desktop-autostart.target" ];
-      before = [ "xdg-desktop-autostart.target" ];
-    };
+    # systemd.user.targets.cosmic-session = {
+    #   wants = [ "xdg-desktop-autostart.target" ];
+    #   before = [ "xdg-desktop-autostart.target" ];
+    # };
     # TODO: remove when <https://github.com/nix-community/home-manager/pull/6332> is available on all supported home-manager branches
     systemd.user.targets.tray = {
       description = "Cosmic Tray Target";
