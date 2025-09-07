@@ -4,6 +4,11 @@
   rustPlatform,
   libcosmicAppHook,
   pkg-config,
+  libclang,
+  glib,
+  clang,
+  glibc,
+  clang-tools,
   pulseaudio,
   pipewire,
   udev,
@@ -26,12 +31,21 @@ rustPlatform.buildRustPackage {
   nativeBuildInputs = [
     libcosmicAppHook
     pkg-config
+    libclang.lib
+    glib
+    clang
   ];
   buildInputs = [
+    glibc
+    clang-tools
     pipewire
     pulseaudio
     udev
   ];
+
+  LIBCLANG_PATH="${libclang.lib}/lib";
+  BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${libclang.lib}/lib/clang/${lib.getVersion clang}/include";
+
 
   env.POLKIT_AGENT_HELPER_1 = "/run/wrappers/bin/polkit-agent-helper-1";
 
