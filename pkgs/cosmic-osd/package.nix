@@ -5,6 +5,7 @@
   libcosmicAppHook,
   pkg-config,
   pulseaudio,
+  pipewire,
   udev,
   nix-update-script,
 }:
@@ -27,6 +28,7 @@ rustPlatform.buildRustPackage {
     pkg-config
   ];
   buildInputs = [
+    pipewire
     pulseaudio
     udev
   ];
