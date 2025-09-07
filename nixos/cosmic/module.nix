@@ -139,7 +139,7 @@ in
     };
     services.gvfs.enable = lib.mkDefault true;
     networking.networkmanager.enable = lib.mkDefault true;
-    services.gnome.gnome-keyring.enable = lib.mkDefault true;
+    services.gnome.gnome-keyring.enable = lib.mkForce true; # cosmic-session now requires gnome-keyring-daemon to start
 
     # general graphical session features
     programs.dconf.enable = lib.mkDefault true;
