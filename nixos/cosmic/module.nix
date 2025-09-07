@@ -26,6 +26,9 @@ in
       xwayland.enable = lib.mkEnableOption "Xwayland support for cosmic-comp" // {
         default = true;
       };
+      theme-non-native = lib.mkEnableOption "automatically support theming non-native apps through cosmic-settings" // {
+         default = true;
+      };
     };
 
     environment.cosmic.excludePackages = lib.mkOption {
@@ -90,6 +93,9 @@ in
       ]
       ++ lib.optionals cfg.xwayland.enable [
         xwayland
+      ]
+      ++ lib.optionals cfg.theme-non-native [
+        adw-gtk3
       ]
       ++ lib.optionals config.services.flatpak.enable [
         cosmic-store
@@ -162,6 +168,7 @@ in
     services.displayManager.sessionPackages = with pkgs; [ cosmic-session ];
     systemd.packages = with pkgs; [ cosmic-session ];
     programs.dconf.packages = with pkgs; [ cosmic-session ];
+
     # TODO: remove when upstream has XDG autostart support
     systemd.user.targets.cosmic-session = {
       wants = [ "xdg-desktop-autostart.target" ];
