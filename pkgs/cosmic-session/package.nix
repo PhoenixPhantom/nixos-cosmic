@@ -25,10 +25,10 @@ rustPlatform.buildRustPackage {
 
   postPatch = ''
     substituteInPlace data/start-cosmic \
-      --replace-fail /usr/bin/cosmic-session "''${!outputBin}/bin/cosmic-session" \
-      --replace-fail /usr/bin/dbus-run-session '${lib.getExe' dbus "dbus-run-session"}'
+      --replace-fail /usr/bin/cosmic-session "${placeholder "out"}/bin/cosmic-session" \
+      --replace-fail /usr/bin/dbus-run-session '${lib.getBin dbus}/bin/dbus-run-session}'
     substituteInPlace data/cosmic.desktop \
-      --replace-fail /usr/bin/start-cosmic "''${!outputBin}/bin/start-cosmic"
+      --replace-fail /usr/bin/start-cosmic "${placeholder "out"}/bin/start-cosmic"
   '';
 
   nativeBuildInputs = [ just ];
@@ -49,9 +49,10 @@ rustPlatform.buildRustPackage {
     "${placeholder "out"}/etc/dconf/profile/cosmic"
   ];
 
-  env.XDP_COSMIC = lib.getExe xdg-desktop-portal-cosmic;
-  # use `orca` from PATH (instead of absolute path) if available
-  env.ORCA = "orca";
+  env = {
+    XDP_COSMIC = "${xdg-desktop-portal-cosmic}/libexec/xdg-desktop-portal-cosmic";
+    ORCA = "orca"; # use `orca` from PATH (instead of absolute path) if available
+  };
 
   passthru = {
     updateScript = nix-update-script {

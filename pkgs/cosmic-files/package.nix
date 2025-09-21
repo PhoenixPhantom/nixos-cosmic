@@ -5,8 +5,6 @@
   libcosmicAppHook,
   stdenv,
   glib,
-  libclang,
-  clang,
   just,
   nix-update-script,
 }:
@@ -26,33 +24,12 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [
     libcosmicAppHook
-    libclang.lib
-    clang
     just
+    rustPlatform.bindgenHook
   ];
   buildInputs = [ 
     glib
   ];
-
-  # Needed so bindgen can find libclang.so
-  LIBCLANG_PATH="${libclang.lib}/lib";
-  BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${libclang.lib}/lib/clang/${lib.getVersion clang}/include";
-
-
-  # TODO: uncomment and remove phases below if these packages can ever be built at the same time
-  # NOTE: this causes issues with the desktop instance linking to a window tab when cosmic-files is opened, see <https://github.com/lilyinstarlight/nixos-cosmic/issues/591>
-  #cargoBuildFlags = [
-  #  "--package"
-  #  "cosmic-files"
-  #  "--package"
-  #  "cosmic-files-applet"
-  #];
-  # cargoTestFlags = [
-  #  "--package"
-  #  "cosmic-files"
-  #  "--package"
-  #  "cosmic-files-applet"
-  # ];
 
   dontUseJustBuild = true;
   dontUseJustCheck = true;
@@ -69,25 +46,32 @@ rustPlatform.buildRustPackage rec {
     "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-files-applet"
   ];
 
-  env.VERGEN_GIT_SHA = src.rev;
-
-  # TODO: remove next two phases if these packages can ever be built at the same time
   buildPhase = ''
+    runHook preBuild
+
     baseCargoBuildFlags="$cargoBuildFlags"
+
     cargoBuildFlags="$baseCargoBuildFlags --package cosmic-files"
     runHook cargoBuildHook
+
     cargoBuildFlags="$baseCargoBuildFlags --package cosmic-files-applet"
     runHook cargoBuildHook
+
+    runHook postBuild
   '';
 
-  # TODO: use tests again, once they do not cause compiler errors every second update
   checkPhase = ''
+    runHook preCheck
+
     baseCargoTestFlags="$cargoTestFlags"
-    # operation tests require io_uring and fail in nix-sandbox
-    cargoTestFlags="$baseCargoTestFlags --package cosmic-files -- --skip operation::tests"
+
+    cargoTestFlags="$baseCargoTestFlags --package cosmic-files"
     runHook cargoCheckHook
+
     cargoTestFlags="$baseCargoTestFlags --package cosmic-files-applet"
     runHook cargoCheckHook
+
+    runHook postCheck
   '';
 
   passthru.updateScript = nix-update-script {

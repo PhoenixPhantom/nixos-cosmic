@@ -10,11 +10,9 @@
   pkg-config,
   pipewire,
   pulseaudio,
-  libclang,
-  clang,
   stdenv,
   udev,
-  util-linux,
+  util-linuxMinimal,
   xkeyboard_config,
   nix-update-script,
 }:
@@ -36,9 +34,8 @@ rustPlatform.buildRustPackage {
     libcosmicAppHook
     just
     pkg-config
-    libclang.lib
-    clang
-    util-linux
+    util-linuxMinimal
+    rustPlatform.bindgenHook
   ];
   buildInputs = [
     dbus
@@ -48,9 +45,6 @@ rustPlatform.buildRustPackage {
     pulseaudio
     udev
   ];
-
-  LIBCLANG_PATH="${libclang.lib}/lib";
-  BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${libclang.lib}/lib/clang/${lib.getVersion clang}/include";
 
   dontUseJustBuild = true;
   dontUseJustCheck = true;
@@ -64,9 +58,11 @@ rustPlatform.buildRustPackage {
     "${stdenv.hostPlatform.rust.cargoShortTarget}/release"
   ];
 
-  postInstall = ''
-    libcosmicAppWrapperArgs+=(--set-default X11_BASE_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/base.xml)
-    libcosmicAppWrapperArgs+=(--set-default X11_EXTRA_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/base.extras.xml)
+  preFixup = ''
+    libcosmicAppWrapperArgs+=(
+      --set-default X11_BASE_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/base.xml
+      --set-default X11_EXTRA_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/base.extras.xml
+    )
   '';
 
   passthru.updateScript = nix-update-script {

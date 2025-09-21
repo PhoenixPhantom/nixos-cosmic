@@ -4,9 +4,9 @@
   fetchFromGitHub,
   libcosmicAppHook,
   pkg-config,
-  libgbm ? null,
+  stdenv,
+  libgbm,
   libinput,
-  mesa,
   udev,
   nix-update-script,
 }:
@@ -29,16 +29,17 @@ rustPlatform.buildRustPackage {
     pkg-config
   ];
   buildInputs = [
-    (if libgbm != null then libgbm else mesa)
+    libgbm
     libinput
     udev
   ];
 
-  postInstall = ''
-    mkdir -p $out/share/{applications,icons/hicolor/scalable/apps}
-    cp data/*.desktop $out/share/applications/
-    cp data/*.svg $out/share/icons/hicolor/scalable/apps/
-  '';
+  dontCargoInstall = true;
+
+  makeFlags = [
+    "prefix=${placeholder "out"}"
+    "CARGO_TARGET_DIR=target/${stdenv.hostPlatform.rust.cargoShortTarget}"
+  ];
 
   passthru.updateScript = nix-update-script {
     extraArgs = [

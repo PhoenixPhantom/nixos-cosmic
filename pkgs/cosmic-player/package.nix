@@ -7,6 +7,8 @@
   ffmpeg,
   glib,
   gst_all_1,
+  libgbm,
+  libglvnd,
   just,
   pkg-config,
   stdenv,
@@ -27,6 +29,10 @@ rustPlatform.buildRustPackage {
 
   cargoHash = "sha256-DodFIfthiGFSvXWfPsPjFhNY6G7z3lb6pfc5HtUXhMo=";
 
+  postPatch = ''
+    substituteInPlace justfile --replace-fail '#!/usr/bin/env' "#!$(command -v env)"
+  '';
+
   nativeBuildInputs = [
     libcosmicAppHook
     rustPlatform.bindgenHook
@@ -43,6 +49,8 @@ rustPlatform.buildRustPackage {
     gst_all_1.gst-plugins-base
     gst_all_1.gst-plugins-good
     gst_all_1.gst-plugins-bad
+    libgbm
+    libglvnd
   ];
 
   dontUseJustBuild = true;

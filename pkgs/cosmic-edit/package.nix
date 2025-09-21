@@ -5,8 +5,8 @@
   libcosmicAppHook,
   fontconfig,
   freetype,
+  libglvnd,
   glib,
-  gtk3,
   just,
   libinput,
   pkg-config,
@@ -34,8 +34,8 @@ rustPlatform.buildRustPackage rec {
   ];
   buildInputs = [
     glib
-    gtk3
     libinput
+    libglvnd
     fontconfig
     freetype
   ];
@@ -52,7 +52,9 @@ rustPlatform.buildRustPackage rec {
     "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-edit"
   ];
 
-  env.VERGEN_GIT_SHA = src.rev;
+  postPatch = ''
+    substituteInPlace justfile --replace-fail '#!/usr/bin/env' "#!$(command -v env)"
+  '';
 
   passthru.updateScript = nix-update-script {
     extraArgs = [

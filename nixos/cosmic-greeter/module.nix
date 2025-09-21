@@ -8,6 +8,7 @@
 
 let
   cfg = config.services.displayManager.cosmic-greeter;
+  cfgAutoLogin = config.services.displayManager.autoLogin;
 in
 {
   disabledModules = [
@@ -24,13 +25,16 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # greetd config
     services.greetd = {
       enable = true;
       settings = {
         default_session = {
           user = "cosmic-greeter";
-          command = ''${lib.getExe' pkgs.coreutils "env"} XCURSOR_THEME="''${XCURSOR_THEME:-Pop}" systemd-cat -t cosmic-greeter ${lib.getExe pkgs.cosmic-comp} ${lib.getExe cfg.package}'';
+          command = ''${lib.getExe' pkgs.coreutils "env"} XCURSOR_THEME="''${XCURSOR_THEME:-Pop}" ${lib.getExe' cfg.package "cosmic-greeter-start"}'';
+        };
+        initial_session = lib.mkIf (cfgAutoLogin.enable && (cfgAutoLogin.user != null)) {
+          user = cfgAutoLogin.user;
+          command = ''${lib.getExe' pkgs.coreutils "env"} XCURSOR_THEME="''${XCURSOR_THEME:-Pop}" systemd-cat -t cosmic-session ${lib.getExe' pkgs.cosmic-session "start-cosmic"}'';
         };
       };
     };
@@ -55,20 +59,14 @@ in
       createHome = true;
       group = "cosmic-greeter";
     };
-
     users.groups.cosmic-greeter = { };
 
-    # required features
     hardware.graphics.enable = true;
     services.libinput.enable = true;
-
-    # required dbus services
     services.accounts-daemon.enable = true;
+    services.dbus.packages = [ cfg.package ];
 
     # required for authentication
     security.pam.services.cosmic-greeter = { };
-
-    # dbus definitions
-    services.dbus.packages = [ cfg.package ];
   };
 }

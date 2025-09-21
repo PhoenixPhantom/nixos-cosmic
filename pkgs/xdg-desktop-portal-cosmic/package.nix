@@ -4,10 +4,10 @@
   rustPlatform,
   fetchFromGitHub,
   libcosmicAppHook,
+  cosmic-wallpapers,
   coreutils,
   util-linux,
-  libgbm ? null,
-  mesa,
+  libgbm,
   pipewire,
   pkg-config,
   gst_all_1,
@@ -36,7 +36,7 @@ rustPlatform.buildRustPackage rec {
     util-linux
   ];
   buildInputs = [
-    (if libgbm != null then libgbm else mesa)
+    libgbm
     pipewire
   ];
   checkInputs = [ gst_all_1.gstreamer ];
@@ -45,6 +45,9 @@ rustPlatform.buildRustPackage rec {
 
   # TODO: remove when dbus activation for xdg-desktop-portal-cosmic is fixed to properly start it
   postPatch = ''
+    substituteInPlace src/screenshot.rs src/widget/screenshot.rs \
+      --replace-fail '/usr/share/backgrounds/pop/kate-hazen-COSMIC-desktop-wallpaper.png' '${cosmic-wallpapers}/share/backgrounds/cosmic/orion_nebula_nasa_heic0601a.jpg'
+
     substituteInPlace data/org.freedesktop.impl.portal.desktop.cosmic.service \
       --replace-fail 'Exec=/bin/false' 'Exec=${lib.getExe' coreutils "true"}'
   '';
@@ -55,11 +58,7 @@ rustPlatform.buildRustPackage rec {
     "CARGO_TARGET_DIR=target/${stdenv.hostPlatform.rust.cargoShortTarget}"
     "prefix=${placeholder "out"}"
   ];
-
-  postInstall = ''
-    mv $out/libexec $out/bin
-  '';
-
+  
   passthru.updateScript = nix-update-script {
     extraArgs = [
       "--version-regex"
