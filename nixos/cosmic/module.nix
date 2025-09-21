@@ -66,6 +66,7 @@ in
           # avoid PATH pollution of system action keybinds (Xwayland handled below)
           useXWayland = false;
         })
+        cosmic-initial-setup
         cosmic-edit
         cosmic-files
         config.services.displayManager.cosmic-greeter.package
