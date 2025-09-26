@@ -12,16 +12,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-tweaks";
-  version = "0.1.3-unstable-2025-09-21";
+  version = "0.2.0-unstable-2025-09-24";
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "tweaks";
-    rev = "0abd94eb76b6018bee9adddb345a55745d659af4";
-    hash = "sha256-JWWKjaIxaq2XCOzht2Nl5oErG6D3xcJSYXlgSy0S42s=";
+    rev = "33f1b213e44f1627d98191afb145626ae0a96e7d";
+    hash = "sha256-pSTmou9tkMHKbUm/vdDiSzFjcHNQBbnqQ25JCNINjgI=";
   };
 
-  cargoHash = "sha256-ZFaL6qEKzSGZzOtcJX32wti0ivdA7CbYGREPFWZvxmc=";
+  cargoHash = "sha256-Zl7c/3q5J+9y1vRJdR77NJ6y62bV1bxaVMuiyxDbLX4=";
 
   nativeBuildInputs = [
     libcosmicAppHook
