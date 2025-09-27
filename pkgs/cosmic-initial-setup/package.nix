@@ -36,6 +36,11 @@ rustPlatform.buildRustPackage {
     udev
   ];
 
+  patches = [
+    ./disable-language-page.patch
+    ./disable-timezone-page.patch
+  ];
+
   env.DISABLE_IF_EXISTS = "/iso/nix-store.squashfs";
 
   postPatch = ''
@@ -43,7 +48,7 @@ rustPlatform.buildRustPackage {
      substituteInPlace justfile --replace-fail \
      "autostart-dst := rootdir / 'etc' / 'xdg' / 'autostart' / desktop-entry" \
      "autostart-dst := prefix / 'etc' / 'xdg' / 'autostart' / desktop-entry"
-     '';
+   '';
 
   dontUseJustBuild = true;
   dontUseJustCheck = true;

@@ -10,6 +10,7 @@
   fontconfig,
   freetype,
   just,
+  isocodes,
   libinput,
   pipewire,
   pkg-config,
@@ -50,6 +51,7 @@ rustPlatform.buildRustPackage {
   buildInputs = [
     expat
     fontconfig
+    isocodes
     freetype
     libinput
     pipewire
