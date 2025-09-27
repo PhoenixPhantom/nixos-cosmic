@@ -8,7 +8,7 @@
   nix-update-script,
 }:
 
-rustPlatform.buildRustPackage {
+rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-clipboard-manager";
   version = "0.1.0-unstable-2025-09-21";
 
@@ -36,6 +36,9 @@ rustPlatform.buildRustPackage {
     "--set"
     "env-dst"
     "${placeholder "out"}/etc/profile.d/cosmic-ext-applet-clipboard-manager.sh"
+    "--set"
+    "CLIPBOARD_MANAGER_COMMIT"
+    "${src.rev}"
     "--set"
     "bin-src"
     "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-ext-applet-clipboard-manager"

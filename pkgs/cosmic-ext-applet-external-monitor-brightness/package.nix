@@ -14,6 +14,7 @@ rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-external-monitor-brightness";
   version = "0-unstable-2024-07-04";
 
+
   src = fetchFromGitHub {
     owner = "maciekk64";
     repo = "cosmic-ext-applet-external-monitor-brightness";
