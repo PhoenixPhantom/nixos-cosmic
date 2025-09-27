@@ -14,7 +14,7 @@
   nix-update-script,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage {
   pname = "xdg-desktop-portal-cosmic";
   version = "1.0.0-beta.1.1-unstable-2025-09-19";
 
@@ -41,9 +41,6 @@ rustPlatform.buildRustPackage rec {
   ];
   checkInputs = [ gst_all_1.gstreamer ];
 
-  env.VERGEN_GIT_SHA = src.rev;
-
-  # TODO: remove when dbus activation for xdg-desktop-portal-cosmic is fixed to properly start it
   postPatch = ''
     substituteInPlace src/screenshot.rs src/widget/screenshot.rs \
       --replace-fail '/usr/share/backgrounds/pop/kate-hazen-COSMIC-desktop-wallpaper.png' '${cosmic-wallpapers}/share/backgrounds/cosmic/orion_nebula_nasa_heic0601a.jpg'

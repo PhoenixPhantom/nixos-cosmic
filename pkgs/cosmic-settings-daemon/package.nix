@@ -42,9 +42,11 @@ rustPlatform.buildRustPackage {
   ];
 
   makeFlags = [
-    "prefix=$(out)"
+    "prefix=${placeholder "out"}"
     "CARGO_TARGET_DIR=target/${stdenv.hostPlatform.rust.cargoShortTarget}"
   ];
+
+  dontCargoInstall = true;
 
   passthru.updateScript = nix-update-script {
     extraArgs = [

@@ -4,7 +4,7 @@
   rustPlatform,
   libcosmicAppHook,
   libdisplay-info,
-  libgbm ? null,
+  libgbm,
   libinput,
   mesa,
   pixman,
@@ -13,7 +13,6 @@
   stdenv,
   udev,
   xwayland,
-  useXWayland ? true,
   systemd,
   useSystemd ? lib.meta.availableOn stdenv.hostPlatform systemd,
   nix-update-script,
@@ -40,7 +39,7 @@ rustPlatform.buildRustPackage {
   ];
   buildInputs = [
     libdisplay-info
-    (if libgbm != null then libgbm else mesa)
+    libgbm
     libinput
     pixman
     seatd
@@ -56,10 +55,6 @@ rustPlatform.buildRustPackage {
     "prefix=${placeholder "out"}"
     "CARGO_TARGET_DIR=target/${stdenv.hostPlatform.rust.cargoShortTarget}"
   ];
-
-  preFixup = lib.optionalString useXWayland ''
-    libcosmicAppWrapperArgs+=(--prefix PATH : ${lib.makeBinPath [ xwayland ]})
-  '';
 
   passthru.updateScript = nix-update-script {
     extraArgs = [
