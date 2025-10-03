@@ -16,16 +16,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-edit";
-  version = "1.0.0-beta.1.1-unstable-2025-09-26";
+  version = "1.0.0-beta.1.1-unstable-2025-10-03";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-edit";
-    rev = "877a35533dc057b2ab44ca2d15e92132380ed4df";
-    hash = "sha256-JBaYLwVAiN23BtS0g2O9z9IcmVzdE83Ah7qY9qp1iys=";
+    rev = "2d6d2d381ef2ef7518bb5703abe4bb6a584800d2";
+    hash = "sha256-fJXSUyVKGn7HUZsJOwaVaJwbbjANtZs0ZUfVG60WtIY=";
   };
 
-  cargoHash = "sha256-YfD06RAQPZRwapd0fhNsZ0tx+0JMNDXiPJIWwDhmG0M=";
+  cargoHash = "sha256-C/kUpOh1LZ0OyZqKCu93OgHjm8UyL1N0vVdmO+K6hHc=";
 
   nativeBuildInputs = [
     libcosmicAppHook
