@@ -74,7 +74,7 @@ rustPlatform.buildRustPackage {
     description = "COSMIC Initial Setup";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [
-      phoenixphantom
+      #phoenixphantom
     ];
     platforms = lib.platforms.linux;
     mainProgram = "cosmic-initial-setup";
