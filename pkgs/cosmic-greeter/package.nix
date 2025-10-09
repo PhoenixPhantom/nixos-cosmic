@@ -11,6 +11,7 @@
   linux-pam,
   stdenv,
   udev,
+  orca,
   xkeyboard_config,
   nix-update-script,
 }:
@@ -39,6 +40,7 @@ rustPlatform.buildRustPackage rec {
     libinput
     linux-pam
     udev
+    orca
   ];
 
   cargoBuildFlags = [ "--all" ];
@@ -62,10 +64,12 @@ rustPlatform.buildRustPackage rec {
 
   postPatch = ''
     substituteInPlace src/greeter.rs --replace-fail '/usr/bin/env' '${lib.getExe' coreutils "env"}'
+    substituteInPlace src/greeter.rs --replace-fail '/usr/bin/orca' '${lib.getExe orca}'
   '';
 
   preFixup = ''
     libcosmicAppWrapperArgs+=(
+      --prefix PATH : ${lib.makeBinPath [ cosmic-randr ]}
       --set-default X11_BASE_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/base.xml
       --set-default X11_BASE_EXTRA_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/extra.xml
     )
