@@ -38,11 +38,6 @@ rustPlatform.buildRustPackage {
     udev
   ];
 
-  patches = [
-    ./disable-language-page.patch
-    ./disable-timezone-page.patch
-  ];
-
   env.DISABLE_IF_EXISTS = "/iso/nix-store.squashfs";
 
   postPatch = ''
