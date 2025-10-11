@@ -26,6 +26,8 @@ rustPlatform.buildRustPackage {
 
   auditable = false;
 
+  buildFeatures = [ "nixos" ];
+
   nativeBuildInputs = [
     libcosmicAppHook
     just
