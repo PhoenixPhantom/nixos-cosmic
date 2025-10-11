@@ -44,6 +44,8 @@ in
     environment.pathsToLink = [
       "/share/backgrounds"
       "/share/cosmic"
+      "/share/cosmic-layouts"
+      "/share/cosmic-themes"
     ];
     environment.systemPackages = utils.removePackagesByName (
       with pkgs;
