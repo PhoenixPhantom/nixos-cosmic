@@ -10,16 +10,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-caffeine";
-  version = "0-unstable-2025-10-04";
+  version = "0-unstable-2025-10-11";
 
   src = fetchFromGitHub {
     owner = "tropicbliss";
     repo = "cosmic-ext-applet-caffeine";
-    rev = "0e4af3b53ec37d065323fcdbf9ee1049aae3db88";
-    hash = "sha256-vLxLOGs4VsDWrbomZz2s+xWWgPkmKVrPJAMVHRs4Vqo=";
+    rev = "d1f367555eafdeab242fbe39d05fc5a9b64ed997";
+    hash = "sha256-jTC8Gd/LYpZVQfU3ncVOmljrmvj8E333/kIw7wR5oRI=";
   };
 
-  cargoHash = "sha256-nl/giMIQ5xNSOgjv67OMWkfuAVtdIcqZDbXC1mYwXBM=";
+  cargoHash = "sha256-WTFWMCVQz/630AMAXXpozN+7inViQsgrHP1DiKHdx7o=";
 
   nativeBuildInputs = [
     libcosmicAppHook
