@@ -11,7 +11,7 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-notifications";
-  version = "1.0.0-beta.1.1-unstable-2025-10-09";
+  version = "1.0.0-beta.2-unstable-2025-10-09";
 
   src = fetchFromGitHub {
     owner = "pop-os";
