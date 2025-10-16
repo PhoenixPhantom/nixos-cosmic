@@ -7,6 +7,7 @@
   stdenv,
   openssl,
   udev,
+  killall,
   libinput,
   nix-update-script,
 }:
@@ -33,6 +34,7 @@ rustPlatform.buildRustPackage {
     just
   ];
   buildInputs = [
+    killall
     libinput
     openssl
     udev
@@ -46,6 +48,10 @@ rustPlatform.buildRustPackage {
      "autostart-dst := rootdir / 'etc' / 'xdg' / 'autostart' / desktop-entry" \
      "autostart-dst := prefix / 'etc' / 'xdg' / 'autostart' / desktop-entry"
    '';
+
+   preFixup = ''
+    libcosmicAppWrapperArgs+=(--prefix PATH : ${lib.makeBinPath [ killall ]})
+  '';
 
   dontUseJustBuild = true;
   dontUseJustCheck = true;

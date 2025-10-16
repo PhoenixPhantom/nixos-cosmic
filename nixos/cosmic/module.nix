@@ -67,7 +67,7 @@ in
          cosmic-settings-daemon
          cosmic-workspaces-epoch
       ] ++ [
-         adwaita-icon-theme
+          adwaita-icon-theme
           alsa-utils
           cosmic-edit
           cosmic-icons
@@ -82,6 +82,9 @@ in
           pop-icon-theme
           pop-launcher
           xdg-user-dirs
+          pulseaudio
+          glib
+          networkmanagerapplet
       ]
       ++ lib.optionals cfg.xwayland.enable [
         xwayland
@@ -91,6 +94,7 @@ in
       ]
     ) config.environment.cosmic.excludePackages;
 
+    
     # xdg portal packages and config
     xdg = {
        # requied by cosmic-osd
@@ -114,6 +118,8 @@ in
              before = [ "xdg-desktop-autostart.target" ];
           };
        };
+       # TODO: remmove once nixpkgs has stopped networkmanagerapplet from autostarting on cosmic (see: https://github.com/NixOS/nixpkgs/pull/449426)
+       user.units."app-nm\\x2dapplet@autostart".enable = false;
     };
     # fonts
     fonts.packages = utils.removePackagesByName (with pkgs; [

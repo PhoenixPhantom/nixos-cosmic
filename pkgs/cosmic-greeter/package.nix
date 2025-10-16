@@ -4,7 +4,6 @@
   rustPlatform,
   libcosmicAppHook,
   cmake,
-  cosmic-randr,
   coreutils,
   just,
   libinput,
@@ -36,7 +35,6 @@ rustPlatform.buildRustPackage rec {
     just
   ];
   buildInputs = [
-    cosmic-randr
     libinput
     linux-pam
     udev
@@ -69,7 +67,6 @@ rustPlatform.buildRustPackage rec {
 
   preFixup = ''
     libcosmicAppWrapperArgs+=(
-      --prefix PATH : ${lib.makeBinPath [ cosmic-randr ]}
       --set-default X11_BASE_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/base.xml
       --set-default X11_BASE_EXTRA_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/extra.xml
     )
