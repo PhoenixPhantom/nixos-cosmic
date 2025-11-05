@@ -10,13 +10,13 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-clipboard-manager";
-  version = "0.1.0-unstable-2025-10-23";
+  version = "0.1.0-unstable-2025-11-05";
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "clipboard-manager";
-    rev = "08a4f34022cc092302ea0f0a95457891984d4f3d";
-    hash = "sha256-2b2qHx7IPKn5i6Te3IeglGEbznMNfcsmYpVwRDLOfX0=";
+    rev = "f74b562a09e88e8d20ee0b9c5ab8cade8e4edbdb";
+    hash = "sha256-tWNf0YZzVXM8FsA/jhGSrdPvnLRaVzQ1prYWINAGNN8=";
   };
 
   cargoHash = "sha256-DmxrlYhxC1gh5ZoPwYqJcAPu70gzivFaZQ7hVMwz3aY=";
