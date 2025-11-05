@@ -14,16 +14,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-initial-setup";
-  version = "1.0.0-beta.4-unstable-2025-10-29";
+  version = "1.0.0-beta.5-unstable-2025-11-04";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-initial-setup";
-    rev = "4e6eb64629d43b7b042eadf4797554e989b86411";
-    hash = "sha256-rAY+AU3j5uBJYCB/Fn4EN14jjLh2cD2GH2QrbyxUMqA=";
+    rev = "70e36d6ec4105b0790698cd2a8f23c6f33182921";
+    hash = "sha256-SDLdVTY7Fj8ZLHpZLaTlGy7sAqs/4eAVSjwBugownFM=";
   };
 
-  cargoHash = "sha256-orwK9gcFXK4/+sfwRubcz0PP6YAFqsENRHnlSLttLxM=";
+  cargoHash = "sha256-jOPJiKPE3UUD/QHmb+6s6l2RVhtUFls3QRGQ6DmEFSE=";
 
   auditable = false;
 
