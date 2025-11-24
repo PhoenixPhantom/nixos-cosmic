@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: DeterminateSystems/nix-installer-action@v21
+      - uses: DeterminateSystems/nix-installer-action@v20
         with:
           diagnostic-endpoint: ''
           source-url: 'https://install.lix.systems/lix/lix-installer-${{ matrix.architecture.system }}'
