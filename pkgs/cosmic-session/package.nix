@@ -6,7 +6,6 @@
   dbus,
   just,
   stdenv,
-  xdg-desktop-portal-cosmic,
   nix-update-script,
 }:
 
@@ -35,7 +34,6 @@ rustPlatform.buildRustPackage {
   buildInputs = [ bash ];
 
   dontUseJustBuild = true;
-  dontUseJustCheck = true;
 
   justFlags = [
     "--set"
@@ -50,7 +48,6 @@ rustPlatform.buildRustPackage {
   ];
 
   env = {
-    XDP_COSMIC = "${xdg-desktop-portal-cosmic}/libexec/xdg-desktop-portal-cosmic";
     ORCA = "orca"; # use `orca` from PATH (instead of absolute path) if available
   };
 

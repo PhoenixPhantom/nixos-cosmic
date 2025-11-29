@@ -5,7 +5,6 @@
   libcosmicAppHook,
   fontconfig,
   freetype,
-  libglvnd,
   glib,
   just,
   libinput,
@@ -35,7 +34,6 @@ rustPlatform.buildRustPackage rec {
   buildInputs = [
     glib
     libinput
-    libglvnd
     fontconfig
     freetype
   ];
@@ -48,8 +46,8 @@ rustPlatform.buildRustPackage rec {
     "prefix"
     (placeholder "out")
     "--set"
-    "bin-src"
-    "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-edit"
+    "cargo-target-dir"
+    "target/${stdenv.hostPlatform.rust.cargoShortTarget}"
   ];
 
   postPatch = ''

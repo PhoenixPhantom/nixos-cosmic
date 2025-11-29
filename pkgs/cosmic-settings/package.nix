@@ -16,7 +16,6 @@
   pkg-config,
   pulseaudio,
   udev,
-  util-linux,
   xkeyboard_config,
   nix-update-script,
 }:
@@ -46,12 +45,10 @@ rustPlatform.buildRustPackage {
     cmake
     just
     pkg-config
-    util-linux
   ];
   buildInputs = [
     expat
     fontconfig
-    isocodes
     freetype
     libinput
     pipewire
@@ -74,6 +71,7 @@ rustPlatform.buildRustPackage {
    preFixup = ''
    libcosmicAppWrapperArgs+=(
       --prefix PATH : ${lib.makeBinPath [ cosmic-randr ]}
+      --prefix XDG_DATA_DIRS : ${lib.makeSearchPathOutput "bin" "share" [ isocodes ]}
       --set-default X11_BASE_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/base.xml
       --set-default X11_BASE_EXTRA_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/extra.xml
     )

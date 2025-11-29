@@ -1,6 +1,7 @@
 {
   lib,
   fetchFromGitHub,
+  cosmic-wallpapers,
   rustPlatform,
   libcosmicAppHook,
   just,
@@ -36,9 +37,15 @@ rustPlatform.buildRustPackage {
     "prefix"
     (placeholder "out")
     "--set"
-    "bin-src"
-    "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-bg"
+    "cargo-target-dir"
+    "target/${stdenv.hostPlatform.rust.cargoShortTarget}"
   ];
+
+  postPatch = ''
+    substituteInPlace config/src/lib.rs data/v1/all \
+      --replace-fail '/usr/share/backgrounds/cosmic/orion_nebula_nasa_heic0601a.jpg' \
+      "${cosmic-wallpapers}/share/backgrounds/cosmic/orion_nebula_nasa_heic0601a.jpg"
+  '';
 
   passthru.updateScript = nix-update-script {
     extraArgs = [

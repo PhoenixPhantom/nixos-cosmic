@@ -11,6 +11,7 @@
   stdenv,
   udev,
   orca,
+  cosmic-randr,
   xkeyboard_config,
   nix-update-script,
 }:
@@ -35,6 +36,7 @@ rustPlatform.buildRustPackage rec {
     just
   ];
   buildInputs = [
+    cosmic-randr
     libinput
     linux-pam
     udev
@@ -51,14 +53,14 @@ rustPlatform.buildRustPackage rec {
     "prefix"
     (placeholder "out")
     "--set"
-    "bin-src"
-    "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-greeter"
-    "--set"
-    "daemon-src"
-    "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-greeter-daemon"
+    "cargo-target-dir"
+    "target/${stdenv.hostPlatform.rust.cargoShortTarget}"
   ];
 
-  env.VERGEN_GIT_SHA = src.rev;
+  env = {
+     VERGEN_GIT_COMMIT_DATE = "2025-11-24";
+     VERGEN_GIT_SHA = src.rev;
+  };
 
   postPatch = ''
     substituteInPlace src/greeter.rs --replace-fail '/usr/bin/env' '${lib.getExe' coreutils "env"}'
@@ -67,6 +69,7 @@ rustPlatform.buildRustPackage rec {
 
   preFixup = ''
     libcosmicAppWrapperArgs+=(
+      --prefix PATH : ${lib.makeBinPath [ cosmic-randr ]}
       --set-default X11_BASE_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/base.xml
       --set-default X11_BASE_EXTRA_RULES_XML ${xkeyboard_config}/share/X11/xkb/rules/extra.xml
     )

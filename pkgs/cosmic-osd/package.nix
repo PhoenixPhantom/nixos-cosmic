@@ -3,12 +3,12 @@
   fetchFromGitHub,
   rustPlatform,
   libcosmicAppHook,
-  pkg-config,
   libinput,
-  glibc,
   pulseaudio,
   pipewire,
   udev,
+  stdenv,
+  just,
   nix-update-script,
 }:
 
@@ -27,15 +27,26 @@ rustPlatform.buildRustPackage {
 
   nativeBuildInputs = [
     libcosmicAppHook
-    pkg-config
+    just
     rustPlatform.bindgenHook
   ];
   buildInputs = [
-    glibc
     libinput
     pipewire
     pulseaudio
     udev
+  ];
+
+  dontUseJustBuild = true;
+  dontUseJustCheck = true;
+
+  justFlags = [
+    "--set"
+    "prefix"
+    (placeholder "out")
+    "--set"
+    "cargo-target-dir"
+    "target/${stdenv.hostPlatform.rust.cargoShortTarget}"
   ];
 
   env.POLKIT_AGENT_HELPER_1 = "/run/wrappers/bin/polkit-agent-helper-1";

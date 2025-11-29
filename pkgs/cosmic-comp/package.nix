@@ -3,16 +3,14 @@
   fetchFromGitHub,
   rustPlatform,
   libcosmicAppHook,
-  libdisplay-info,
+  libdisplay-info_0_2,
   libgbm,
   libinput,
-  mesa,
   pixman,
   pkg-config,
   seatd,
   stdenv,
   udev,
-  xwayland,
   systemd,
   useSystemd ? lib.meta.availableOn stdenv.hostPlatform systemd,
   nix-update-script,
@@ -38,7 +36,7 @@ rustPlatform.buildRustPackage {
     pkg-config
   ];
   buildInputs = [
-    libdisplay-info
+    libdisplay-info_0_2
     libgbm
     libinput
     pixman
