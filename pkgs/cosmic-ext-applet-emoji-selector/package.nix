@@ -11,13 +11,13 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-emoji-selector";
-  version = "0.1.5-unstable-2025-06-12";
+  version = "0.1.5-unstable-2025-11-29";
 
   src = fetchFromGitHub {
     owner = "leb-kuchen";
     repo = "cosmic-ext-applet-emoji-selector";
-    rev = "f7333f23b235121b2c85787f82d94bf8804c6b50";
-    hash = "sha256-BDI5tV6Gzbwtm6Vex46CYDpTqMupssOJUZU0YNGyIqM=";
+    rev = "4530c2d1f2690efc87a666645e534328eb55fafe";
+    hash = "sha256-Jw9Br4VVhhG8EH77EmFQsiKZJw97Iq1VtuOgGmjCfAg=";
   };
 
   cargoHash = "sha256-uEcxVaLCXVxSCkKPUgTom86ropE3iXiPyy6ITufWa5k=";
