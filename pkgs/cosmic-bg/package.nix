@@ -12,7 +12,7 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-bg";
-  version = "1.0.0-beta.8-unstable-2025-11-25";
+  version = "1.0.0-beta.9-unstable-2025-11-25";
 
   src = fetchFromGitHub {
     owner = "pop-os";
