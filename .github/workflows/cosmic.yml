@@ -43,7 +43,7 @@ jobs:
           git reset --hard HEAD
 
       - id: create-pr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: update_cosmic_action
           delete-branch: true
