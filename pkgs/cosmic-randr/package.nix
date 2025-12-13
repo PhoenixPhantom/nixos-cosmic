@@ -11,16 +11,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-randr";
-  version = "1.0.0-beta.9-unstable-2025-11-24";
+  version = "1.0.0-unstable-2025-12-12";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-randr";
-    rev = "c39fe3fe3573c34ebbdf6d6d7f93ff232800c588";
-    hash = "sha256-g5s4TIk8nS3qPIAlWQC4D5A936+DYMbEEnU6v8iO9TI=";
+    rev = "741089cf5e3aa7d5e48042101c1d4cc813b13637";
+    hash = "sha256-7jkHaCE1IUE3GuRUeDMvbxomBp3gTzauK1EP1MAbqf0=";
   };
 
-  cargoHash = "sha256-ZStjzRqgCnRy1v2K1upUbioedmDaa1ml1gRNZc32Q00=";
+  cargoHash = "sha256-QWSPj7bxxWh5/KeNEtUsfDKg+JMONLjomrMcn57j6fw=";
 
   nativeBuildInputs = [
     just
