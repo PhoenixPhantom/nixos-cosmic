@@ -9,13 +9,13 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-screenshot";
-  version = "1.0.0-unstable-2025-12-10";
+  version = "1.0.0-unstable-2025-12-16";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-screenshot";
-    rev = "f74d6695f0d3593db248fbe587257a23459a982d";
-    hash = "sha256-mGkYUMVEMY4nWJ9H33tqRSd7cZUvsT0tqXKsnMbjP04=";
+    rev = "f08430eff46c531586ec0716648846d05dd2dbad";
+    hash = "sha256-PMek8gkqfYTnHTkUTQ4O59pFV3j0zGpa7ojeDwkAt0w=";
   };
 
   cargoHash = "sha256-O8fFeg1TkKCg+QbTnNjsH52xln4+ophh/BW/b4zQs9o=";
