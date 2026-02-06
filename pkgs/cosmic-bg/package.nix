@@ -12,13 +12,13 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-bg";
-  version = "1.0.3-unstable-2026-01-16";
+  version = "1.0.5-unstable-2026-01-31";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-bg";
-    rev = "f431b28e78eb9d92b51dfd3df12d7b469d94db65";
-    hash = "sha256-LBIcQG3ZebK1bPVJ8WNHkHMLPsEcw77oZAkQRrd4j6o=";
+    rev = "808a50e383685c2c8f3f41e7b96c14c96145327e";
+    hash = "sha256-lD5lTYXBy+keee+VArtNHgCS9n737YKaW8Kg3tu+8o0=";
   };
 
   cargoHash = "sha256-+NkraWjWHIMIyktAUlp3q2Ot1ib1QRsBBvfdbr5BXto=";
