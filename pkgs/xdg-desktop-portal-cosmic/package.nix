@@ -41,11 +41,6 @@ rustPlatform.buildRustPackage {
   ];
   checkInputs = [ gst_all_1.gstreamer ];
 
-  postPatch = ''
-    substituteInPlace src/screenshot.rs src/widget/screenshot.rs \
-      --replace-fail '/usr/share/backgrounds/pop/kate-hazen-COSMIC-desktop-wallpaper.png' '${cosmic-wallpapers}/share/backgrounds/cosmic/orion_nebula_nasa_heic0601a.jpg'
-  '';
-
   dontCargoInstall = true;
 
   makeFlags = [
