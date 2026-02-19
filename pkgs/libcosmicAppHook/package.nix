@@ -8,7 +8,10 @@
   pkg-config,
   vulkan-loader,
   wayland,
-  xorg,
+  libx11,
+  libxcursor,
+  libxi,
+  libxcb,
   targetPackages,
   includeSettings ? true,
 }:
@@ -27,10 +30,10 @@ makeSetupHook {
     [
       libGL
       libxkbcommon
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXi
-      xorg.libxcb
+      libx11
+      libxcursor
+      libxi
+      libxcb
     ]
     ++ lib.optionals (!stdenv.hostPlatform.isDarwin) [
       wayland
