@@ -10,16 +10,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-applibrary";
-  version = "1.0.8-unstable-2026-03-09";
+  version = "1.0.8-unstable-2026-03-17";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-applibrary";
-    rev = "60859021fb59356ada10e4fbc9b9ca9051e02f82";
-    hash = "sha256-xVDn2+5x7fpnJTEDizIMeZWrB5KwtxMcQZ8Qw9buiOo=";
+    rev = "08ab631e4d23e0282f1959123e6b1eeba240b59e";
+    hash = "sha256-XdDgrtytDJkLkmrojW+76q3EIZOeKN4GJOQ5IjWo5D4=";
   };
 
-  cargoHash = "sha256-h/LjcSKnmZof4/OFyLDUFWcjn6TiTt8eRAJkj8lUC0Y=";
+  cargoHash = "sha256-+pkjsw3Ki7PaYVm7c15n1g/cnQIcumCvu6s+hvGEXJU=";
 
   nativeBuildInputs = [
     libcosmicAppHook
