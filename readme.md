@@ -115,10 +115,6 @@ gtk-icon-theme-name=Cosmic
 
 
 
-### Installing packaged extensions
-This repository also packages multiple third-party extensions to the COSMIC desktop (e.g. [cosmic-ext-applet-clipboard-manager](https://github.com/cosmic-utils/clipboard-manager) or [cosmic-ext-tweaks](https://github.com/cosmic-utils/tweaks)). The `nixos-cosmic.overlays.default` overlay as used in the example `flake.nix` enables installing these extensions as you would install any other package (i.e. by adding it to `users.users."yourusername".packages`, `environment.system.packages` or `home.packages` (only if using home manager)).
-
-
 ## Build Requirements
 Currently the repository provides no binary cache so all packages need to be built locally.
 
