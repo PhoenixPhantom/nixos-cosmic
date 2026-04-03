@@ -16,16 +16,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "xdg-desktop-portal-cosmic";
-  version = "1.0.8-unstable-2026-03-24";
+  version = "1.0.8-unstable-2026-04-01";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "xdg-desktop-portal-cosmic";
-    rev = "0b3a881b07abfc72d3595d54c3986a9f7348a411";
-    hash = "sha256-R9Vl3anuPC6D4Hy30+hCpHqCbPZCLpD8LAVDjE5WmY0=";
+    rev = "dd4ad1acd7de3c8cbb1161f9e9d4af0415e0b169";
+    hash = "sha256-KP4VNjg+MvrNtLdTcRHB5NmrLN0AjP106wSszE6U0MY=";
   };
 
-  cargoHash = "sha256-VvtfI1HQZWuputhAQXP94zMusFHwOwit78QHzlHlJRw=";
+  cargoHash = "sha256-eherqBRuIVcs7ZxYfMyiRC4SUIbPzVUcflScoeKrpVA=";
 
   separateDebugInfo = true;
 
