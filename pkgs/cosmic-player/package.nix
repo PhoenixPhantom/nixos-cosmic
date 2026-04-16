@@ -18,16 +18,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-player";
-  version = "1.0.8-unstable-2026-04-03";
+  version = "1.0.10-unstable-2026-04-15";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-player";
-    rev = "6f5040a953c2fa9cdf8b070578be5251a8090141";
-    hash = "sha256-nvSRuwBAU1KrnE5NdyWANiZG5B2jaliKvcG27HSf6Yc=";
+    rev = "a8d941675406af7732c1dc6cf094ee996509ec07";
+    hash = "sha256-D8qBR+U+YTi3KS5rEabEQ/q9wFn4/yZME++dVHmW7SQ=";
   };
 
-  cargoHash = "sha256-ifYRyD2tTHpdz1Mp3e+qCenwOaXfm8pSZu0mZT898Ck=";
+  cargoHash = "sha256-Yqri4MiwxlBO7D9+6GmS1XC2QPTN2MTC0u7BDdhswxA=";
 
   postPatch = ''
     substituteInPlace justfile --replace-fail '#!/usr/bin/env' "#!$(command -v env)"
