@@ -18,16 +18,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-greeter";
-  version = "1.0.11-unstable-2026-04-14";
+  version = "1.0.11-unstable-2026-04-28";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-greeter";
-    rev = "619910c5cc5bb31479230744e1814c71a1a1aeb3";
-    hash = "sha256-59t0jKXspmhwnTYPa96tNkYrOuCFZ80g/VJsyrZ0s10=";
+    rev = "2cbfba0c0b5f822b26664cd7c1e5a161d00daaba";
+    hash = "sha256-mfgIVi/o5O715IX7Wt8QHfxzBX6ye+wztWU/GHaj9C0=";
   };
 
-  cargoHash = "sha256-MZmbwmc1DPCZ9g4OM9gy0IuXgy/zxreujEYY3Ji5Ad8=";
+  cargoHash = "sha256-jhugV3eF7g6WU5ez3LzqKc/wP952Zpi8Hplg9SZflns=";
 
   nativeBuildInputs = [
     libcosmicAppHook
