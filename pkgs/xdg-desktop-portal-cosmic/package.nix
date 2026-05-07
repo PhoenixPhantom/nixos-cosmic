@@ -16,7 +16,7 @@
 
 rustPlatform.buildRustPackage {
   pname = "xdg-desktop-portal-cosmic";
-  version = "1.0.11-unstable-2026-04-28";
+  version = "1.0.12-unstable-2026-04-28";
 
   src = fetchFromGitHub {
     owner = "pop-os";
