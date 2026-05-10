@@ -12,7 +12,7 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "observatory";
-  version = "0.2.2-unstable-2025-04-04";
+  version = "0-unstable-2025-04-04";
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
