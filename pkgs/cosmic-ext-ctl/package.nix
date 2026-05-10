@@ -7,7 +7,7 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-ctl";
-  version = "1.5.0-unstable-2025-05-02";
+  version = "0-unstable-2025-05-02";
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
