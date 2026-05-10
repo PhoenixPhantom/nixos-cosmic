@@ -11,7 +11,7 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-emoji-selector";
-  version = "0.1.5-unstable-2025-11-29";
+  version = "0-unstable-2025-11-29";
 
   src = fetchFromGitHub {
     owner = "leb-kuchen";
