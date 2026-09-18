@@ -28,16 +28,16 @@ in
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-settings";
-  version = "1.0.13-unstable-2026-05-19";
+  version = "1.8.0-unstable-2026-09-15";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-settings";
-    rev = "f19da761296a28ea97d6dadc2971de0bf2c0ad85";
-    hash = "sha256-jE2liPULj2Nxp+YEh1tQ8E3uQlBT5Jfxwuv3Ktr//oc=";
+    rev = "e6e2acc18878d224ba5027da44ee228384385c65";
+    hash = "sha256-hzuQSl01zM2kf4RzzAYLBt9uT6dJ0nDieWxBEaStJ28=";
   };
 
-  cargoHash = "sha256-0ULwV2muS8kAP91IsmmoVnJw2OlQaJpZURuGRifgAoE=";
+  cargoHash = "sha256-a/yFznvBt4gOvrWyJZ3TlZiuZRFuAofymu1rNNkDxQc=";
 
   nativeBuildInputs = [
     libcosmicAppHook'
