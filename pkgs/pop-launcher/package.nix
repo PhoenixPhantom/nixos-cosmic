@@ -14,16 +14,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "pop-launcher";
-  version = "0-unstable-2026-02-13";
+  version = "0-unstable-2026-08-24";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "launcher";
-    rev = "5b868510716673b31a650488401489898352e2d9";
-    hash = "sha256-HUI37LSu0FU5+xnpB4R93JdgDCckp5Zmo5CNH5fssl0=";
+    rev = "6390080a98a4a59b4e8196d28de97d3cb4d138ec";
+    hash = "sha256-OfUpbpAhUGUFunucRgbD+UXF40sl6PgpmJzUjbfn1Z8=";
   };
 
-  cargoHash = "sha256-9gYfQQQd/W3QQFavbLiJVFQDs0dkZtHDm3xNXZPzhLc=";
+  cargoHash = "sha256-k57ondlF1xu5/GU9QzKkT5F2caFNNPC6/Bj2HWwzzGI=";
 
   nativeBuildInputs = [
     just
