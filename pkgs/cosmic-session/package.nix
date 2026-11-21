@@ -11,16 +11,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-session";
-  version = "1.0.13-unstable-2026-05-07";
+  version = "1.11.0-unstable-2026-11-18";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-session";
-    rev = "495e591dc65987a0327b9dea646126ebdfe8a1db";
-    hash = "sha256-FphY53MaOUUR2oQfZak3HbT+kvysUnw2AIc4L9O+TcU=";
+    rev = "1de865b2b707b7dd670920a9529961d136bd63c8";
+    hash = "sha256-mLIqC95dsWid7SFwc6nW/ci5JenmrAje37+avpQMtaw=";
   };
 
-  cargoHash = "sha256-5dLG40X+yxJo566guyHqOCLNp+uNSE+HONS8GIDm58A=";
+  cargoHash = "sha256-kRpaNZocyT2KaPUqqdToWd+c8PI99nW1wH/bE/yttZ8=";
 
   postPatch = ''
     substituteInPlace data/start-cosmic \

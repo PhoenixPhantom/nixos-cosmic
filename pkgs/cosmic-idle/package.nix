@@ -11,16 +11,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-idle";
-  version = "1.0.13-unstable-2026-02-13";
+  version = "1.11.0-unstable-2026-10-20";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-idle";
-    rev = "c95d066b5b640509a6369634b669ca60dc50e168";
-    hash = "sha256-0tcrOfVT5b57ev3b5F2U78F2QPGFwp94bqFVNyKH0Yk=";
+    rev = "6d6f07af60bb307882cdcbd0bda0a6fc76bd0df3";
+    hash = "sha256-j1SkYPmePDs4M8aEuRSujCk5L56BT7KD53axn/0AFTI=";
   };
 
-  cargoHash = "sha256-wAjFC6qAC3nllbnZf0KVaZTEztNYo6GTvwcp5FYmXLw=";
+  cargoHash = "sha256-jWTVQDwID/GkPTBL1SFDta/22j/7FM0uPK0/JVe3BvA=";
 
   nativeBuildInputs = [
     libcosmicAppHook
