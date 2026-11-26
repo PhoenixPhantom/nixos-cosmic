@@ -10,13 +10,13 @@
 
 rustPlatform.buildRustPackage {
   pname = "stellarshot";
-  version = "0-unstable-2025-10-21";
+  version = "0-unstable-2026-11-25";
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "stellarshot";
-    rev = "ec3edcc278faeea9a4f505f2ae2fafdcad0a5a20";
-    hash = "sha256-V2P50pFC5UcCr5637csfM/GAZNqr2dYSG2tPxuOTx8E=";
+    rev = "cb880ca7deaac7df4c62b7e6771015a858e4ea75";
+    hash = "sha256-2MX0viuPtcN3lWPaXrfQsMz9+M9FShzeAOyO6ARl1VQ=";
   };
 
   cargoHash = "sha256-xHrHDYZTw8dyxHYLZ8fxO5qHnd2M5NEbc0euaSYbH1o=";
