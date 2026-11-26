@@ -15,16 +15,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "cosmic-settings-daemon";
-  version = "1.0.13-unstable-2026-05-13";
+  version = "1.12.0-unstable-2026-11-24";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-settings-daemon";
-    rev = "fa82bdf9fe7b5f5bd6008f32f393efd5e7a71c47";
-    hash = "sha256-A+nOAadFWU+KRW54dP2WW6P6fabIs4z1AqC37LSZjUI=";
+    rev = "03ea96f3fa0e118491b9186a9a2df94cb6cadbee";
+    hash = "sha256-IrP6Rrmkw3bO3RoQVoFczjhU4X1r/3O9LuuPCitS3f4=";
   };
 
-  cargoHash = "sha256-bz+JasI3WE30sKKgjofVO/42Ml4YY9Dw3JxnZmZVQk4=";
+  cargoHash = "sha256-RGrUAP1f5nOBAa67qZF+OPBFJOCHGJB5dFhNYcE7QFY=";
 
   postPatch = ''
     substituteInPlace src/battery.rs \
